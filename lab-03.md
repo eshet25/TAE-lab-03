@@ -119,12 +119,13 @@ ggplot(data = nobel_living_science, aes(x=country_us, fill = country_us)) +
 ![](lab-03_files/figure-gfm/pize-vs-US-laureate-faceted-bar-1.png)<!-- -->
 
 Based on our bar graphes, it certainly looks like the data supports the
-Buzzfeed article’ headline. In each category, we can see that the number
-of nobel laureates living in the US when they won their prizes.
+Buzzfeed article’s headline. In each category, we can see that the
+number of nobel laureates living in the US when they won their prizes is
+greater than those that are outside of the US.
 
 ### Exercise 4
 
-…
+… \#having some issues, need to get back to this.
 
 ### Exercise 5
 
