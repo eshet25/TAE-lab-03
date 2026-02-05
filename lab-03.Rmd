@@ -29,7 +29,7 @@ glimpse(nobel)
 
 ### Exercise 2
 
-```{r create-filtered-new-variable}
+```{r create-filtered-new-data-frame}
 nobel_living <- nobel %>%     #create nobel_living from nobel then pipe
   filter(                     
     is.na(died_date),        #died_date is NA
@@ -46,10 +46,40 @@ I have confirmed there are `r nrow(nobel_living)` observations.
 
 ### Exercise 3
 
-```{r}
-
+```{r create-new-variable-to-identify-if-laureate-was-in-US-when-won}
+nobel_living <- nobel_living %>%           #pipeline to mutate the nobel_living data 
+  mutate(                                   #create new variable               
+    country_us = if_else(country == "USA", "USA", "Other")  
+  )                                         #If country == "USA": label it as "USA"
+                                            #Otherwise: label "Other"
 ```
 
+```{r check-new-variable}
+table(nobel_living$country_us)           #make a frequency count table to check new variable
+```
+
+```{r limit-analysis-to-only-chosen-categories}
+nobel_living_science <- nobel_living %>%                
+  filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics")) 
+#%>% is pipe   
+#%in% checks if a certain value is found in the group specified (y/n) 
+#c creates a vector (list of values)
+```
+
+```{r pize-vs-US-laureate-faceted-bar}
+ggplot(data = nobel_living_science, aes(x=country_us, fill = country_us)) +
+  geom_bar() +
+  facet_wrap(~category) +
+  coord_flip() +                      #could also just put y=country_us?
+  labs(
+    x = "Country based during nobel prize win",
+    y = "Number of Nobel Laureates",
+    title = "Counts of Nobel Laureates by Country and Category",
+    fill = "Country"
+  )
+```
+
+Based on our bar graphes, it certainly looks like the data supports the Buzzfeed article's headline. In each category, we can see that the number of nobel laureates living in the US when they won their prizes is greater than those that are outside of the US. 
 
 ### Exercise 4
 

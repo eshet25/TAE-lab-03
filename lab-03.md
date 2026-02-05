@@ -79,6 +79,49 @@ I have confirmed there are 253 observations.
 
 ### Exercise 3
 
+``` r
+nobel_living <- nobel_living %>%           #pipeline to mutate the nobel_living data 
+  mutate(                                   #create new variable               
+    country_us = if_else(country == "USA", "USA", "Other")  
+  )                                         #If country == "USA": label it as "USA"
+                                            #Otherwise: label "Other"
+```
+
+``` r
+table(nobel_living$country_us)           #make a frequency count table to check new variable
+```
+
+    ## 
+    ## Other   USA 
+    ##    91   162
+
+``` r
+nobel_living_science <- nobel_living %>%                
+  filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics")) 
+#%>% is pipe   
+#%in% checks if a certain value is found in the group specified (y/n) 
+#c creates a vector (list of values)
+```
+
+``` r
+ggplot(data = nobel_living_science, aes(x=country_us, fill = country_us)) +
+  geom_bar() +
+  facet_wrap(~category) +
+  coord_flip() +                      #could also just put y=country_us?
+  labs(
+    x = "Country based during nobel prize win",
+    y = "Number of Nobel Laureates",
+    title = "Counts of Nobel Laureates by Country and Category",
+    fill = "Country"
+  )
+```
+
+![](lab-03_files/figure-gfm/pize-vs-US-laureate-faceted-bar-1.png)<!-- -->
+
+Based on our bar graphes, it certainly looks like the data supports the
+Buzzfeed article’ headline. In each category, we can see that the number
+of nobel laureates living in the US when they won their prizes.
+
 ### Exercise 4
 
 …
