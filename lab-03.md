@@ -80,11 +80,15 @@ I have confirmed there are 253 observations.
 ### Exercise 3
 
 ``` r
-nobel_living <- nobel_living %>%           #pipeline to mutate the nobel_living data 
-  mutate(                                   #create new variable               
+nobel_living <- nobel_living %>%           
+  mutate(                                             
     country_us = if_else(country == "USA", "USA", "Other")  
-  )                                         #If country == "USA": label it as "USA"
-                                            #Otherwise: label "Other"
+  )                                   
+
+#pipeline to mutate the nobel_living data 
+#create new variable    
+#If country == "USA": label it as "USA"
+#Otherwise: label "Other"
 ```
 
 ``` r
@@ -98,6 +102,7 @@ table(nobel_living$country_us)           #make a frequency count table to check 
 ``` r
 nobel_living_science <- nobel_living %>%                
   filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics")) 
+
 #%>% is pipe   
 #%in% checks if a certain value is found in the group specified (y/n) 
 #c creates a vector (list of values)
@@ -200,4 +205,5 @@ nobel_living_science %>%      #create the pipe first (then filter>count>arrange)
     ## 10 China              1
     ## # ℹ 15 more rows
 
-From our data, it appears UNited Kingdom is the most common country. …
+As per the data above, it appears United Kingdom is the most common
+country. …
