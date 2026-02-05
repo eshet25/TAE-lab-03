@@ -75,13 +75,9 @@ nrow(nobel_living)
 
     ## [1] 253
 
-The new variable has nrow(nobel_living) rows.
+I have confirmed there are 253 observations.
 
 ### Exercise 3
-
-Remove this text, and add your answer for Exercise 1 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.
 
 ### Exercise 4
 

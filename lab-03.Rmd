@@ -42,13 +42,14 @@ nobel_living <- nobel %>%     #create nobel_living from nobel then pipe
 nrow(nobel_living)
 ```
 
+I have confirmed there are `r nrow(nobel_living)` observations. 
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r}
+
+```
+
 
 ### Exercise 4
 
