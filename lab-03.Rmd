@@ -47,11 +47,15 @@ I have confirmed there are `r nrow(nobel_living)` observations.
 ### Exercise 3
 
 ```{r create-new-variable-to-identify-if-laureate-was-in-US-when-won}
-nobel_living <- nobel_living %>%           #pipeline to mutate the nobel_living data 
-  mutate(                                   #create new variable               
+nobel_living <- nobel_living %>%           
+  mutate(                                             
     country_us = if_else(country == "USA", "USA", "Other")  
-  )                                         #If country == "USA": label it as "USA"
-                                            #Otherwise: label "Other"
+  )                                   
+
+#pipeline to mutate the nobel_living data 
+#create new variable    
+#If country == "USA": label it as "USA"
+#Otherwise: label "Other"
 ```
 
 ```{r check-new-variable}
@@ -61,6 +65,7 @@ table(nobel_living$country_us)           #make a frequency count table to check 
 ```{r limit-analysis-to-only-chosen-categories}
 nobel_living_science <- nobel_living %>%                
   filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics")) 
+
 #%>% is pipe   
 #%in% checks if a certain value is found in the group specified (y/n) 
 #c creates a vector (list of values)
@@ -98,7 +103,7 @@ There are 113 US born nobel laureates.
 
 ### Exercise 5
 
-```{r limit-once-again-to-our-categories-with-new-variable}
+```{r once-again-limit-analysis-to-science-categories-with-new-variable}
 nobel_living_science <- nobel_living %>%                
   filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics")) 
 ```
@@ -129,5 +134,5 @@ nobel_living_science %>%      #create the pipe first (then filter>count>arrange)
         arrange(desc(n))             #n = number of observations
 ```
 
-From our data, it appears UNited Kingdom is the most common country. 
+As per the data above, it appears United Kingdom is the most common country. 
 ...
