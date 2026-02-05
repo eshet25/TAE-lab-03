@@ -125,11 +125,52 @@ greater than those that are outside of the US.
 
 ### Exercise 4
 
-… \#having some issues, need to get back to this.
+``` r
+nobel_living <- nobel_living %>%
+  mutate(
+    born_country_us = if_else(born_country == "USA", "USA", "Other")
+  )
+```
+
+``` r
+table(nobel_living$born_country_us) 
+```
+
+    ## 
+    ## Other   USA 
+    ##   138   113
+
+There are 113 US born nobel laureates.
 
 ### Exercise 5
 
-…
+``` r
+nobel_living_science <- nobel_living %>%                
+  filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics")) 
+```
+
+``` r
+ggplot(data = nobel_living_science, aes(x=country_us, fill = born_country_us)) +
+  geom_bar() +
+  facet_wrap(~category) +
+  coord_flip() +                     
+  labs(
+    x = "Country based during nobel prize win",
+    y = "Number of Nobel Laureates",
+    title = "Counts of Nobel Laureates by Country of Birth and Category",
+    fill = "Country of Birth"
+  )
+```
+
+![](lab-03_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+Ok, now it has become a little ambiguous. Earlier, we saw that the
+majority of people who won science-related nobel prizes were based in
+the United States. But now we are seeing that, out of the these winners
+living in the US, a significant portion of them are born in the US, and
+there also seems to be a very small portion in the Physics category that
+is potentially unknown/missing information. So, from this visualization,
+I can’t say that our data supports Buzzfeed’s claim. …
 
 ### Exercise 6
 
