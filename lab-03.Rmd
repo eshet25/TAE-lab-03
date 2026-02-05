@@ -1,7 +1,7 @@
 ---
 title: "Lab 03 - Nobel laureates"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Tsion"
+date: "02/03/2026"
 output: github_document
 ---
 
@@ -21,17 +21,27 @@ Here is a link to the [lab instructions](https://datascience4psych.github.io/Dat
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r get-to-know-data}
+glimpse(nobel)
+```
+
+1. The data has 1026 observations (rows) and 26 columns (variables). Each row represents a single Noble Laureate (specifying 26 different variables like firstname, lastname, year Noble won, date/city/country born,...)
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r create-filtered-new-variable}
+nobel_living <- nobel %>%     #create nobel_living from nobel then pipe
+  filter(                     
+    is.na(died_date),        #died_date is NA
+    !is.na(country),         #country is available (not NA)
+    gender != "org"          #gender not equal to organization 
+  ) 
+```
+
+```{r confirm-new-variable}
+nrow(nobel_living)
+```
+
 
 ### Exercise 3
 
