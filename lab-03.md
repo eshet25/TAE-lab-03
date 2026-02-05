@@ -119,9 +119,10 @@ ggplot(data = nobel_living_science, aes(x=country_us, fill = country_us)) +
 ![](lab-03_files/figure-gfm/pize-vs-US-laureate-faceted-bar-1.png)<!-- -->
 
 Based on our bar graphes, it certainly looks like the data supports the
-Buzzfeed article’s headline. In each category, we can see that the
-number of nobel laureates living in the US when they won their prizes is
-greater than those that are outside of the US.
+Buzzfeed article’s headline. Well, at least the first part of its claim.
+In each category, we can see that the number of living nobel laureates
+based in the US when they won their prizes is greater than those that
+are outside of the US.
 
 ### Exercise 4
 
@@ -162,16 +163,41 @@ ggplot(data = nobel_living_science, aes(x=country_us, fill = born_country_us)) +
   )
 ```
 
-![](lab-03_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+![](lab-03_files/figure-gfm/create-bar-graph-with-country-of-birth-1.png)<!-- -->
 
 Ok, now it has become a little ambiguous. Earlier, we saw that the
 majority of people who won science-related nobel prizes were based in
-the United States. But now we are seeing that, out of the these winners
-living in the US, a significant portion of them are born in the US, and
-there also seems to be a very small portion in the Physics category that
-is potentially unknown/missing information. So, from this visualization,
-I can’t say that our data supports Buzzfeed’s claim. …
+the United States. But now we are seeing from our data that out of the
+the winners based in the US, a significant portion of them were actually
+born in the US. There also seems to be a very small portion in the
+Physics category that is potentially unknown/missing information. So,
+from this visualization, I can’t say that our data supports Buzzfeed’s
+claim.
 
 ### Exercise 6
 
-…
+``` r
+nobel_living_science %>%      #create the pipe first (then filter>count>arrange)
+  filter(
+    country_us == "USA",         #won their prize in the US/living in the US
+    born_country_us == "Other") %>%   #but were born outside of the US, pipe again
+      count(born_country) %>%        #create frequency table for birth country
+        arrange(desc(n))             #n = number of observations
+```
+
+    ## # A tibble: 25 × 2
+    ##    born_country       n
+    ##    <chr>          <int>
+    ##  1 United Kingdom    10
+    ##  2 Canada             5
+    ##  3 Germany            5
+    ##  4 Japan              4
+    ##  5 France             3
+    ##  6 Australia          2
+    ##  7 Netherlands        2
+    ##  8 Turkey             2
+    ##  9 Austria            1
+    ## 10 China              1
+    ## # ℹ 15 more rows
+
+From our data, it appears UNited Kingdom is the most common country. …

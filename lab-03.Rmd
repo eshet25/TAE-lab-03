@@ -103,7 +103,7 @@ nobel_living_science <- nobel_living %>%
   filter(category %in% c("Physics", "Medicine", "Chemistry", "Economics")) 
 ```
 
-```{r}
+```{r create-bar-graph-with-country-of-birth}
 ggplot(data = nobel_living_science, aes(x=country_us, fill = born_country_us)) +
   geom_bar() +
   facet_wrap(~category) +
@@ -120,4 +120,14 @@ Ok, now it has become a little ambiguous. Earlier, we saw that the majority of p
 
 ### Exercise 6
 
+```{r most-common-country}
+nobel_living_science %>%      #create the pipe first (then filter>count>arrange)
+  filter(
+    country_us == "USA",         #won their prize in the US/living in the US
+    born_country_us == "Other") %>%   #but were born outside of the US, pipe again
+      count(born_country) %>%        #create frequency table for birth country
+        arrange(desc(n))             #n = number of observations
+```
+
+From our data, it appears UNited Kingdom is the most common country. 
 ...
